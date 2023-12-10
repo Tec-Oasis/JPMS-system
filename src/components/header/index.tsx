@@ -15,6 +15,7 @@ import {
 import React, { useContext } from "react";
 import { useTranslation } from "react-i18next";
 import { ColorModeContext } from "../../contexts/color-mode";
+import { useDirection } from "../../contexts/DirectionContext";
 
 const { Text } = Typography;
 const { useToken } = theme;
@@ -34,6 +35,8 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
   const changeLanguage = useSetLocale();
   const { data: user } = useGetIdentity<IUser>();
   const { mode, setMode } = useContext(ColorModeContext);
+  const { setDirection } = useDirection();
+
 
   const currentLocale = locale();
 
@@ -41,13 +44,16 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
     .sort()
     .map((lang: string) => ({
       key: lang,
-      onClick: () => changeLanguage(lang),
+      onClick: () => {
+        changeLanguage(lang);
+        setDirection(lang === "ar" ? "rtl" : "ltr"); // Set direction based on language
+      },
       icon: (
         <span style={{ marginRight: 8 }}>
           <Avatar size={16} src={`/images/flags/${lang}.svg`} />
         </span>
       ),
-      label: lang === "en" ? "English" : "German",
+      label: lang === "en" ? "English" : "العربية",
     }));
 
   const headerStyles: React.CSSProperties = {
@@ -77,7 +83,7 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
           <Button type="text">
             <Space>
               <Avatar size={16} src={`/images/flags/${currentLocale}.svg`} />
-              {currentLocale === "en" ? "English" : "German"}
+              {currentLocale === "en" ? "English" : "العربية"}
               <DownOutlined />
             </Space>
           </Button>

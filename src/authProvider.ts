@@ -5,7 +5,7 @@ export const TOKEN_KEY = "refine-auth";
 export const authProvider: AuthBindings = {
   login: async ({ username, email, password }) => {
     if ((username || email) && password) {
-      localStorage.setItem(TOKEN_KEY, username);
+      localStorage.setItem(TOKEN_KEY, email);
       return {
         success: true,
         redirectTo: "/",
@@ -46,8 +46,9 @@ export const authProvider: AuthBindings = {
     if (token) {
       return {
         id: 1,
-        name: "John Doe",
-        avatar: "https://i.pravatar.cc/300",
+        name: "Admin",
+        // avatar: "https://i.pravatar.cc/300",
+        avatar: "https://cdn4.iconfinder.com/data/icons/essential-app-2/16/user-avatar-human-admin-login-512.png"
       };
     }
     return null;

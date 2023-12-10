@@ -1,4 +1,5 @@
 {
+  "projectName": "Jazeera Properties",
   "pages": {
     "login": {
       "title": "Sign in to your account",
@@ -137,6 +138,24 @@
       "edit": "Edit Category",
       "list": "Categories",
       "show": "Show Category"
+    }
+  },
+  "properties":{
+    "properties": "properties",
+    "fields": {
+      "title": "Properties",
+      "property_id":"id",
+      "name": "Property Name",
+      "property_number": "Property Number",
+      "total_rooms": "Number of rooms",
+      "property_type": "Property Type",
+      "coordinate_x": "coordinate_x",
+      "coordinate_y": "coordinate_y",
+      "img": "Image",
+      "description": "description",
+      "rent": "rent",
+      "location": "location",
+      "amenities": "amenities"
     }
   },
   "documentTitle": {

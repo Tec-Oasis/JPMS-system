@@ -1,0 +1,184 @@
+{
+  "projectName" : "الجزيرة للعقارات",
+  "pages": {
+    "login": {
+      "title": "تسجيل الدخول إلى حسابك",
+      "signin": "تسجيل الدخول",
+      "signup": "التسجيل",
+      "divider": "أو",
+      "fields": {
+        "email": "البريد الإلكتروني",
+        "password": "كلمة المرور"
+      },
+      "errors": {
+        "validEmail": "عنوان البريد الإلكتروني غير صالح"
+      },
+      "buttons": {
+        "submit": "تسجيل الدخول",
+        "forgotPassword": "هل نسيت كلمة المرور؟",
+        "noAccount": "ليس لديك حساب؟",
+        "rememberMe": "تذكرني"
+      }
+    },
+    "forgotPassword": {
+      "title": "هل نسيت كلمة المرور؟",
+      "fields": {
+        "email": "البريد الإلكتروني"
+      },
+      "errors": {
+        "validEmail": "عنوان البريد الإلكتروني غير صالح"
+      },
+      "buttons": {
+        "submit": "إرسال تعليمات إعادة تعيين"
+      }
+    },
+    "register": {
+      "title": "التسجيل لحسابك",
+      "fields": {
+        "email": "البريد الإلكتروني",
+        "password": "كلمة المرور"
+      },
+      "errors": {
+        "validEmail": "عنوان البريد الإلكتروني غير صالح"
+      },
+      "buttons": {
+        "submit": "التسجيل",
+        "haveAccount": "هل لديك حساب؟"
+      }
+    },
+    "updatePassword": {
+      "title": "تحديث كلمة المرور",
+      "fields": {
+        "password": "كلمة المرور الجديدة",
+        "confirmPassword": "تأكيد كلمة المرور الجديدة"
+      },
+      "errors": {
+        "confirmPasswordNotMatch": "كلمات المرور غير متطابقة"
+      },
+      "buttons": {
+        "submit": "تحديث"
+      }
+    },
+    "error": {
+      "info": "قد تكون قد نسيت إضافة مكون {{action}} إلى مورد {{resource}}.",
+      "404": "عذرًا، الصفحة التي قمت بزيارتها غير موجودة.",
+      "resource404": "هل أنت متأكد من أنك قد أنشأت مورد {{resource}}؟",
+      "backHome": "العودة إلى الصفحة الرئيسية"
+    }
+  },
+  "actions": {
+    "list": "قائمة",
+    "create": "إنشاء",
+    "edit": "تعديل",
+    "show": "عرض"
+  },
+  "buttons": {
+    "create": "إنشاء",
+    "save": "حفظ",
+    "logout": "تسجيل الخروج",
+    "delete": "حذف",
+    "edit": "تعديل",
+    "cancel": "إلغاء",
+    "confirm": "هل أنت متأكد؟",
+    "filter": "تصفية",
+    "clear": "مسح",
+    "refresh": "تحديث",
+    "show": "عرض",
+    "undo": "تراجع",
+    "import": "استيراد",
+    "clone": "استنساخ",
+    "notAccessTitle": "ليس لديك إذن الوصول"
+  },
+  "warnWhenUnsavedChanges": "هل أنت متأكد من أنك تريد المغادرة؟ لديك تغييرات غير محفوظة.",
+  "notifications": {
+    "success": "نجاح",
+    "error": "خطأ (رمز الحالة: {{statusCode}})",
+    "undoable": "لديك {{seconds}} ثانية للتراجع",
+    "createSuccess": "تم إنشاء {{resource}} بنجاح",
+    "createError": "حدث خطأ أثناء إنشاء {{resource}} (رمز الحالة: {{statusCode}})",
+    "deleteSuccess": "تم حذف {{resource}} بنجاح",
+    "deleteError": "حدث خطأ أثناء حذف {{resource}} (رمز الحالة: {{statusCode}})",
+    "editSuccess": "تم تعديل {{resource}} بنجاح",
+    "editError": "حدث خطأ أثناء تعديل {{resource}} (رمز الحالة: {{statusCode}})",
+    "importProgress": "جاري الاستيراد: {{processed}}/{{total}}"
+  },
+  "loading": "جار التحميل",
+  "tags": {
+    "clone": "استنساخ"
+  },
+  "dashboard": {
+    "title": "لوحة التحكم"
+  },
+  "blog_posts": {
+    "blog_posts": "مقالات البلوج",
+    "fields": {
+      "id": "المعرف",
+      "title": "العنوان",
+      "content": "المحتوى",
+      "status": "الحالة",
+      "createdAt": "تم الإنشاء في",
+      "category": "الفئة"
+    },
+    "titles": {
+      "create": "إنشاء مقال بلوج",
+      "edit": "تعديل مقال بلوج",
+      "list": "مقالات البلوج",
+      "show": "عرض مقال بلوج"
+    }
+  },
+  "categories": {
+    "categories": "الفئات",
+    "fields": {
+      "id": "المعرف",
+      "titles": {
+        "create": "إنشاء فئة",
+        "edit": "تعديل فئة",
+        "list": "الفئات",
+        "show": "عرض الفئة"
+      }
+    }
+  },
+  "properties":{
+    "properties": "العقارات",
+    "fields": {
+      "title": "الخصائص",
+      "property_id": "المعرف",
+      "name": "اسم العقار",
+      "property_number": "رقم العقار",
+      "total_rooms": "عدد الغرف",
+      "property_type": "نوع الملكية",
+      "coordinate_x": "الإحداثيات X",
+      "coordinate_y": "الإحداثيات Y",
+      "img": "صورة",
+      "description": "الوصف",
+      "rent": "الإيجار",
+      "location": "الموقع",
+      "amenities": "المزايا"
+    }
+  },
+  "documentTitle": {
+    "default": "تحسين",
+    "suffix": " | تحسين",
+    "blog_posts": {
+      "list": "مقالات البلوج | تحسين",
+      "show": "#{{id}} عرض مقال بلوج | تحسين",
+      "edit": "#{{id}} تعديل مقال بلوج | تحسين",
+      "create": "إنشاء مقال بلوج جديد | تحسين",
+      "clone": "#{{id}} استنساخ مقال بلوج | تحسين"
+    },
+    "categories": {
+      "list": "الفئات | تحسين",
+      "show": "#{{id}} عرض الفئة | تحسين",
+      "edit": "#{{id}} تعديل الفئة | تحسين",
+      "create": "إنشاء فئة جديدة | تحسين",
+      "clone": "#{{id}} استنساخ الفئة | تحسين"
+    },
+    "properties": {
+      "list": "العقارات | الجداول"
+    }
+  },
+  "table": {
+    "actions": "الإجراءات"
+  }
+}
+
