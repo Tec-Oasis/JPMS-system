@@ -61,7 +61,7 @@ function App() {
   const translate = useTranslate();
 
   const FAKE_API_URL = "https://api.fake-rest.refine.dev";
-  const RESYS_API_URL = "http://localhost:3000";
+  const RESYS_API_URL = "https://dolphin-app-7ux4p.ondigitalocean.app";
 
   return (
     <BrowserRouter>
