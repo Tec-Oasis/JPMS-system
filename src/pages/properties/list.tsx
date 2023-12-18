@@ -3,14 +3,12 @@ import {
   IResourceComponentsProps,
   BaseRecord,
   useTranslate,
-  useMany,
 } from "@refinedev/core";
 import {
   useTable,
   List,
   EditButton,
   ShowButton,
-  DeleteButton,
   UrlField,
   TagField,
   DateField,
@@ -21,24 +19,13 @@ export const PropertyList: React.FC<IResourceComponentsProps> = () => {
   const translate = useTranslate();
   const { tableProps } = useTable({
     syncWithLocation: true,
-    pagination: {
-        pageSize: 10,
-    }
-  });
-
-  const { data: propertyData, isLoading: propertyIsLoading } = useMany({
-    resource: "properties",
-    ids: tableProps?.dataSource?.map((item) => item?.property_id) ?? [],
-    queryOptions: {
-      enabled: !!tableProps?.dataSource,
-    },
   });
 
   return (
     <List>
       <Table {...tableProps} rowKey="id">
         <Table.Column
-          dataIndex={["property_id"]}
+          dataIndex="id"
           title={translate("properties.fields.property_id")}
         />
         <Table.Column
@@ -69,7 +56,7 @@ export const PropertyList: React.FC<IResourceComponentsProps> = () => {
         <Table.Column
           dataIndex={["description"]}
           title={translate("properties.fields.description")}
-          // render={(value: any) => <DateField value={value} />}
+          render={(value: any) => <DateField value={value} />}
         />
         <Table.Column
           dataIndex="rent"
@@ -97,7 +84,6 @@ export const PropertyList: React.FC<IResourceComponentsProps> = () => {
             <Space>
               <EditButton hideText size="small" recordItemId={record.id} />
               <ShowButton hideText size="small" recordItemId={record.id} />
-              <DeleteButton hideText size="small" recordItemId={record.id} />
             </Space>
           )}
         />

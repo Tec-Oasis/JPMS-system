@@ -141,7 +141,7 @@
     }
   },
   "properties":{
-    "properties": "properties",
+    "properties": "Properties",
     "fields": {
       "title": "Properties",
       "property_id":"id",

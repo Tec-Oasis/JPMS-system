@@ -47,6 +47,8 @@ import { ForgotPassword } from "./pages/forgotPassword";
 import { Login } from "./pages/login";
 import { Register } from "./pages/register";
 import { AntdInferencer } from "@refinedev/inferencer/antd";
+import { PropertyEdit } from "./pages/properties/edit";
+import { CaretakersList } from "./pages/caretakers/list";
 
 function App() {
   const { t, i18n } = useTranslation();
@@ -61,7 +63,9 @@ function App() {
   const translate = useTranslate();
 
   const FAKE_API_URL = "https://api.fake-rest.refine.dev";
-  const RESYS_API_URL = "https://dolphin-app-7ux4p.ondigitalocean.app";
+  // const RESYS_API_URL = "https://dolphin-app-7ux4p.ondigitalocean.app";
+  const RESYS_API_URL = "http://localhost:3000";
+
 
   return (
     <BrowserRouter>
@@ -87,6 +91,7 @@ function App() {
                     //   edit: "/blog-posts/edit/:id",
                     //   show: "/blog-posts/show/:id",
                     //   meta: {
+                    //     dataProviderName: "default",
                     //     canDelete: true,
                     //   },
                     // },
@@ -104,14 +109,30 @@ function App() {
                       name: "properties",
                       list: "/properties",
                       create: "/properties/create",
-                      edit: "/properties/edit/:property_id",
-                      show: "/properties/show/:property_id",
-                      identifier: "property_id",
+                      edit: "/properties/edit/:id",
+                      show: "/properties/show/:id",
                       meta: {
-                        canDelete: true,
+                        identifier: "id",
                         dataProviderName: "resys",
                       },
                     },
+                    {
+                      name: "users",
+                      list: "/users",
+                      meta: {
+                        identifier: "id",
+                        dataProviderName: "resys",
+                      },
+                    },
+                    {
+                      name: "caretaker_properties",
+                      list: "caretaker_properties",
+                      meta: {
+                        identifier: "id",
+                        dataProviderName: "resys",
+                        label: "Caretakers",
+                      },
+                    }
                     // {
                     //   name: "contracts",
                     //   list: "/contracts",
@@ -144,7 +165,7 @@ function App() {
                               <ThemedTitleV2
                                 // collapsed is a boolean value that indicates whether the <Sidebar> is collapsed or not
                                 collapsed={collapsed}
-                                text={"Jazeera properties"}
+                                text={"Jazeera Properties"}
                               />
                             )}
                             Header={() => <Header sticky />}
@@ -169,25 +190,24 @@ function App() {
                         <Route path="create" element={<BlogPostCreate />} />
                         <Route path="edit/:id" element={<BlogPostEdit />} />
                         <Route path="show/:id" element={<BlogPostShow />} />
-                      </Route>
-                      <Route path="/categories">
+                      </Route> */}
+                      {/* <Route path="/categories">
                         <Route index element={<CategoryList />} />
                         <Route path="create" element={<CategoryCreate />} />
                         <Route path="edit/:id" element={<CategoryEdit />} />
                         <Route path="show/:id" element={<CategoryShow />} />
-                      </Route> */}
+                      </Route>  */}
                       <Route path="/properties">
                         <Route index element={<PropertyList />} />
                         <Route path="create" element={<PropertyCreate />} />
-
-                        <Route
-                          path="edit/:property_id"
-                          element={<AntdInferencer />}
-                        />
-                        <Route
-                          path="show/:property_id"
-                          element={<AntdInferencer />}
-                        />
+                        <Route path="edit/:id" element={<PropertyEdit />} />
+                        <Route path="show/:id" element={<AntdInferencer />} />
+                      </Route>
+                      <Route path="/users">
+                        <Route index element={<AntdInferencer />} />
+                      </Route>
+                      <Route path="caretaker_properties">
+                        <Route index element={<CaretakersList />} />
                       </Route>
                       {/* <Route path="/contracts">
                         <Route index element={<AntdInferencer />} />
