@@ -9,8 +9,10 @@ export const Login = () => {
       type="login"
       title={<h3><b>{translate("projectName")}</b></h3>}
       formProps={{
-        initialValues: { email: "example@mail.com", password: "demodemo" },
+        initialValues: { email: "jane@mail.com", password: "demodemo", },
       }}
+      registerLink={false}
+      forgotPasswordLink={false}
     />
   );
 };

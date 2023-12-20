@@ -1,11 +1,20 @@
 import { AuthBindings } from "@refinedev/core";
 
-export const TOKEN_KEY = "refine-auth";
+// export const TOKEN_KEY = "refine-auth";
+
+const mockUsers = [{ email: "john@mail.com", password: "123" }, { email: "jane@mail.com", password: "123" }];
 
 export const authProvider: AuthBindings = {
-  login: async ({ username, email, password }) => {
-    if ((username || email) && password) {
-      localStorage.setItem(TOKEN_KEY, email);
+  login: async ({ email, password }) => {
+
+    // Suppose we actually send a request to the back end here.
+    const user = mockUsers.find((item) => item.email === email);
+    // console.log("user", user);
+    
+    if (user && user.password === password) {
+      console.log("success", email, password)
+      // localStorage.setItem(TOKEN_KEY, email);
+      localStorage.setItem("auth", JSON.stringify(user.email));
       return {
         success: true,
         redirectTo: "/",
@@ -16,19 +25,19 @@ export const authProvider: AuthBindings = {
       success: false,
       error: {
         name: "LoginError",
-        message: "Invalid username or password",
+        message: "Invalid email or password",
       },
     };
   },
   logout: async () => {
-    localStorage.removeItem(TOKEN_KEY);
+    localStorage.removeItem("auth");
     return {
       success: true,
       redirectTo: "/login",
     };
   },
   check: async () => {
-    const token = localStorage.getItem(TOKEN_KEY);
+    const token = localStorage.getItem("auth");
     if (token) {
       return {
         authenticated: true,
@@ -42,7 +51,7 @@ export const authProvider: AuthBindings = {
   },
   getPermissions: async () => null,
   getIdentity: async () => {
-    const token = localStorage.getItem(TOKEN_KEY);
+    const token = localStorage.getItem("auth");
     if (token) {
       return {
         id: 1,
