@@ -9,7 +9,7 @@ export const Login = () => {
       type="login"
       title={<h3><b>{translate("projectName")}</b></h3>}
       formProps={{
-        initialValues: { email: "jane@mail.com", password: "demodemo", },
+        initialValues: { email: "manager@example.com", password: "123", },
       }}
       registerLink={false}
       forgotPasswordLink={false}
