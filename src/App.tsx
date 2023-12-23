@@ -1,5 +1,9 @@
-import { Authenticated, GitHubBanner, Refine, useTranslate } from "@refinedev/core";
-import { DevtoolsPanel, DevtoolsProvider } from "@refinedev/devtools";
+import { useEffect, useState } from "react";
+import {
+  Authenticated,
+  Refine,
+} from "@refinedev/core";
+import { DevtoolsProvider } from "@refinedev/devtools";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
 import {
@@ -24,23 +28,13 @@ import dataProvider from "@refinedev/simple-rest";
 import { App as AntdApp, ConfigProvider } from "antd";
 import { useTranslation } from "react-i18next";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
+
+import { accessControlProvider } from "./access-control-provider";
 import { authProvider } from "./authProvider";
 import { Header } from "./components/header";
 import { ColorModeContextProvider } from "./contexts/color-mode";
 import { useDirection } from "./contexts/DirectionContext";
 
-import {
-  BlogPostCreate,
-  BlogPostEdit,
-  BlogPostList,
-  BlogPostShow,
-} from "./pages/blog-posts";
-import {
-  CategoryCreate,
-  CategoryEdit,
-  CategoryList,
-  CategoryShow,
-} from "./pages/categories";
 import { PropertyCreate, PropertyList } from "./pages/properties";
 
 import { ForgotPassword } from "./pages/forgotPassword";
@@ -59,12 +53,18 @@ function App() {
     changeLocale: (lang: string) => i18n.changeLanguage(lang),
     getLocale: () => i18n.language,
   };
-  
-  const translate = useTranslate();
+
 
   const FAKE_API_URL = "https://api.fake-rest.refine.dev";
   const RESYS_API_URL = import.meta.env.VITE_PRODUCTION_SERVER_URL;
   // const RESYS_API_URL = import.meta.env.VITE_DEVELOPMENT_SERVER_URL;
+
+
+  const [role, setRole] = useState<string>("");
+  useEffect(() => {
+    const user_data = localStorage.getItem("user_data");
+    setRole(JSON.parse(user_data || "{}").role);
+  }, []);
 
 
   return (
@@ -82,29 +82,11 @@ function App() {
                   notificationProvider={useNotificationProvider}
                   routerProvider={routerBindings}
                   authProvider={authProvider}
+                  accessControlProvider={accessControlProvider}
                   i18nProvider={i18nProvider}
                   resources={[
-                    // {
-                    //   name: "blog_posts",
-                    //   list: "/blog-posts",
-                    //   create: "/blog-posts/create",
-                    //   edit: "/blog-posts/edit/:id",
-                    //   show: "/blog-posts/show/:id",
-                    //   meta: {
-                    //     dataProviderName: "default",
-                    //     canDelete: true,
-                    //   },
-                    // },
-                    // {
-                    //   name: "categories",
-                    //   list: "/categories",
-                    //   create: "/categories/create",
-                    //   edit: "/categories/edit/:id",
-                    //   show: "/categories/show/:id",
-                    //   meta: {
-                    //     canDelete: true,
-                    //   },
-                    // },
+
+
                     {
                       name: "properties",
                       list: "/properties",
@@ -132,19 +114,48 @@ function App() {
                         dataProviderName: "resys",
                         label: "Caretakers",
                       },
-                    }
+                    },
+
+
+
                     // {
-                    //   name: "contracts",
-                    //   list: "/contracts",
-                    //   create: "/contracts/create",
-                    //   edit: "/contracts/edit/:contract_id",
-                    //   show: "/contracts/show/:contract_id",
-                    //   identifier: "contract_id",
+                    //   name: "posts",
+                    //   list: "/posts",
+                    //   show: "/posts/show/:id",
+                    //   create: "/posts/create",
+                    //   edit: "/posts/edit/:id",
                     //   meta: {
                     //     canDelete: true,
-                    //     dataProviderName: "resys",
                     //   },
                     // },
+                    // {
+                    //   name: "users",
+                    //   list: "/users",
+                    //   show: "/users/show/:id",
+                    //   create: "/users/create",
+                    //   edit: "/users/edit/:id",
+                    // },
+                    // {
+                    //   name: "categories",
+                    //   list: "/categories",
+                    //   show: "/categories/show/:id",
+                    //   create: "/categories/create",
+                    //   edit: "/categories/edit/:id",
+                    // },
+                    // {
+                    //   name: "blog_posts",
+                    //   list: "/blog-posts",
+                    //   create: "/blog-posts/create",
+                    //   edit: "/blog-posts/edit/:id",
+                    //   show: "/blog-posts/show/:id",
+                    //   meta: {
+                    //     dataProviderName: "default",
+                    //     canDelete: true,
+                    //   },
+                    // },
+
+
+                    
                   ]}
                   options={{
                     syncWithLocation: true,
@@ -172,7 +183,6 @@ function App() {
                             Sider={(props) => (
                               <ThemedSiderV2 {...props} fixed />
                             )}
-                            
                           >
                             <Outlet />
                           </ThemedLayoutV2>
@@ -183,8 +193,29 @@ function App() {
                         index
                         // element={<NavigateToResource resource="blog_posts" />}
                         element={<NavigateToResource resource="properties" />}
-
                       />
+
+                      {/* <Route path="/posts">
+                        <Route index element={<PostList />} />
+                        <Route path="create" element={<PostCreate />} />
+                        <Route path="edit/:id" element={<PostEdit />} />
+                        <Route path="show/:id" element={<PostShow />} />
+                      </Route>
+
+                      <Route path="/users">
+                        <Route index element={<UserList />} />
+                        <Route path="create" element={<UserCreate />} />
+                        <Route path="edit/:id" element={<UserEdit />} />
+                        <Route path="show/:id" element={<UserShow />} />
+                      </Route>
+
+                      <Route path="/categories">
+                        <Route index element={<CategoryList />} />
+                        <Route path="create" element={<CategoryCreate />} />
+                        <Route path="edit/:id" element={<CategoryEdit />} />
+                        <Route path="show/:id" element={<CategoryShow />} />
+                      </Route> */}
+
                       {/* <Route path="/blog-posts">
                         <Route index element={<BlogPostList />} />
                         <Route path="create" element={<BlogPostCreate />} />
@@ -197,6 +228,7 @@ function App() {
                         <Route path="edit/:id" element={<CategoryEdit />} />
                         <Route path="show/:id" element={<CategoryShow />} />
                       </Route>  */}
+
                       <Route path="/properties">
                         <Route index element={<PropertyList />} />
                         <Route path="create" element={<PropertyCreate />} />

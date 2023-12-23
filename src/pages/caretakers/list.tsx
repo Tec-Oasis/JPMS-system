@@ -4,6 +4,7 @@ import {
   BaseRecord,
   useTranslate,
   useMany,
+  CanAccess,
 } from "@refinedev/core";
 import { useTable, List, TagField } from "@refinedev/antd";
 import { Table, Space } from "antd";
@@ -37,14 +38,15 @@ export const CaretakersList: React.FC<IResourceComponentsProps> = () => {
   });
 
   return (
-    <List>
-      <Table {...tableProps} rowKey="id">
-        <Table.Column
-          dataIndex="caretaker_id"
-          title={translate("caretaker_properties.fields.caretaker_id")}
-        />
+    <CanAccess resource="caretaker_properties" action="list" fallback={<h1>You're not authorized to access this resource</h1>}>
+      <List>
+        <Table {...tableProps} rowKey="id">
+          <Table.Column
+            dataIndex="caretaker_id"
+            title={translate("caretaker_properties.fields.caretaker_id")}
+          />
 
-        {/* <Table.Column
+          {/* <Table.Column
           dataIndex="name"
           title={translate("caretaker_properties.fields.name")}
           render={(name: string) => (
@@ -63,60 +65,61 @@ export const CaretakersList: React.FC<IResourceComponentsProps> = () => {
             </>
           )}
         /> */}
-        <Table.Column
-          dataIndex="name"
-          title={translate("caretaker_properties.fields.name")}
-          render={(name: string, record: any) => (
-            <>
-              {caretakerIsLoading ? (
-                <>Loading...</>
-              ) : (
-                <>
-                  {
-                    caretakerData?.data?.find(
-                      (item) => item.id === record.caretaker_id
-                    )?.name
-                  }
-                </>
-              )}
-            </>
-          )}
-        />
-        <Table.Column
-          dataIndex="email"
-          title={translate("caretaker_properties.fields.email")}
-          render={(name: string, record: any) => (
-            <>
-              {caretakerIsLoading ? (
-                <>Loading...</>
-              ) : (
-                <>
-                  {
-                    caretakerData?.data?.find(
-                      (item) => item.id === record.caretaker_id
-                    )?.email
-                  }
-                </>
-              )}
-            </>
-          )}
-        />
-        <Table.Column
-          dataIndex="property_ids"
-          title={translate("caretaker_properties.fields.property_ids")}
-          render={(value: any[]) =>
-            propertyIsLoading ? (
-              <>Loading...</>
-            ) : (
+          <Table.Column
+            dataIndex="name"
+            title={translate("caretaker_properties.fields.name")}
+            render={(name: string, record: any) => (
               <>
-                {value?.map((item, index) => (
-                  <TagField key={index} value={item} />
-                ))}
+                {caretakerIsLoading ? (
+                  <>Loading...</>
+                ) : (
+                  <>
+                    {
+                      caretakerData?.data?.find(
+                        (item) => item.id === record.caretaker_id
+                      )?.name
+                    }
+                  </>
+                )}
               </>
-            )
-          }
-        />
-      </Table>
-    </List>
+            )}
+          />
+          <Table.Column
+            dataIndex="email"
+            title={translate("caretaker_properties.fields.email")}
+            render={(name: string, record: any) => (
+              <>
+                {caretakerIsLoading ? (
+                  <>Loading...</>
+                ) : (
+                  <>
+                    {
+                      caretakerData?.data?.find(
+                        (item) => item.id === record.caretaker_id
+                      )?.email
+                    }
+                  </>
+                )}
+              </>
+            )}
+          />
+          <Table.Column
+            dataIndex="property_ids"
+            title={translate("caretaker_properties.fields.property_ids")}
+            render={(value: any[]) =>
+              propertyIsLoading ? (
+                <>Loading...</>
+              ) : (
+                <>
+                  {value?.map((item, index) => (
+                    <TagField key={index} value={item} />
+                  ))}
+                </>
+              )
+            }
+          />
+        </Table>
+      </List>
+    </CanAccess>
   );
 };
