@@ -1,8 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  Authenticated,
-  Refine,
-} from "@refinedev/core";
+import { Authenticated, Refine } from "@refinedev/core";
 import { DevtoolsProvider } from "@refinedev/devtools";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
@@ -42,7 +39,13 @@ import { Login } from "./pages/login";
 import { Register } from "./pages/register";
 import { AntdInferencer } from "@refinedev/inferencer/antd";
 import { PropertyEdit } from "./pages/properties/edit";
-import { CaretakersList } from "./pages/caretakers/list";
+import {
+  CaretakersList,
+  CaretakersCreate,
+  CaretakersEdit,
+  CaretakersShow,
+} from "./pages/caretakers";
+// import { UserList, UserCreate } from "./pages/users";
 
 function App() {
   const { t, i18n } = useTranslation();
@@ -54,18 +57,15 @@ function App() {
     getLocale: () => i18n.language,
   };
 
-
   const FAKE_API_URL = "https://api.fake-rest.refine.dev";
-  const RESYS_API_URL = import.meta.env.VITE_PRODUCTION_SERVER_URL;
-  // const RESYS_API_URL = import.meta.env.VITE_DEVELOPMENT_SERVER_URL;
-
+  // const RESYS_API_URL = import.meta.env.VITE_PRODUCTION_SERVER_URL;
+  const RESYS_API_URL = import.meta.env.VITE_DEVELOPMENT_SERVER_URL;
 
   const [role, setRole] = useState<string>("");
   useEffect(() => {
     const user_data = localStorage.getItem("user_data");
     setRole(JSON.parse(user_data || "{}").role);
   }, []);
-
 
   return (
     <BrowserRouter>
@@ -85,8 +85,6 @@ function App() {
                   accessControlProvider={accessControlProvider}
                   i18nProvider={i18nProvider}
                   resources={[
-
-
                     {
                       name: "properties",
                       list: "/properties",
@@ -98,25 +96,27 @@ function App() {
                         dataProviderName: "resys",
                       },
                     },
-                    {
-                      name: "users",
-                      list: "/users",
-                      meta: {
-                        identifier: "id",
-                        dataProviderName: "resys",
-                      },
-                    },
+                    // {
+                    //   name: "users",
+                    //   list: "/users",
+                    //   create: "/users/create",
+                    //   meta: {
+                    //     identifier: "id",
+                    //     dataProviderName: "resys",
+                    //   },
+                    // },
                     {
                       name: "caretaker_properties",
                       list: "caretaker_properties",
+                      create: "/caretaker_properties/create",
+                      edit: "/caretaker_properties/edit/:id",
+                      show: "/caretaker_properties/show/:id",
                       meta: {
                         identifier: "id",
                         dataProviderName: "resys",
                         label: "Caretakers",
                       },
                     },
-
-
 
                     // {
                     //   name: "posts",
@@ -153,9 +153,6 @@ function App() {
                     //     canDelete: true,
                     //   },
                     // },
-
-
-                    
                   ]}
                   options={{
                     syncWithLocation: true,
@@ -235,12 +232,17 @@ function App() {
                         <Route path="edit/:id" element={<PropertyEdit />} />
                         <Route path="show/:id" element={<AntdInferencer />} />
                       </Route>
-                      <Route path="/users">
-                        <Route index element={<AntdInferencer />} />
-                      </Route>
                       <Route path="caretaker_properties">
                         <Route index element={<CaretakersList />} />
+                        <Route path="create" element={<CaretakersCreate />} />
+                        <Route path="edit/:id" element={<CaretakersEdit />} />
+                        <Route path="show/:id" element={<CaretakersShow />} />
                       </Route>
+                      {/* <Route path="/users">
+                        <Route index element={<UserList />} />
+                        <Route path="create" element={<UserCreate />} />
+                      </Route> */}
+
                       {/* <Route path="/contracts">
                         <Route index element={<AntdInferencer />} />
                         <Route path="create" element={<AntdInferencer />} />
