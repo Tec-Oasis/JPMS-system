@@ -4,6 +4,7 @@ import {
   useShow,
   useTranslate,
   useMany,
+  CanAccess,
 } from "@refinedev/core";
 import {
   Show,
@@ -32,21 +33,29 @@ export const CaretakersShow: React.FC<IResourceComponentsProps> = () => {
   });
 
   return (
-    <Show isLoading={isLoading}>
-      <Title level={5}>{translate("caretaker_properties.fields.id")}</Title>
-      <NumberField value={record?.id ?? ""} />
-      <Title level={5}>{translate("caretaker_properties.fields.name")}</Title>
-      <TextField value={record?.name} />
-      <Title level={5}>{translate("caretaker_properties.fields.email")}</Title>
-      <EmailField value={record?.email} />
-      <Title level={5}>
-        {translate("caretaker_properties.fields.property_ids")}
-      </Title>
-      {propertyIsLoading && record?.property_ids?.length ? (
-        <>Loading...</>
-      ) : (
-        <></>
-      )}
-    </Show>
+    <CanAccess
+      resource="caretaker_properties"
+      action="show"
+      fallback={<h1>You're not authorized to access this resource</h1>}
+    >
+      <Show isLoading={isLoading}>
+        <Title level={5}>{translate("caretaker_properties.fields.id")}</Title>
+        <NumberField value={record?.id ?? ""} />
+        <Title level={5}>{translate("caretaker_properties.fields.name")}</Title>
+        <TextField value={record?.name} />
+        <Title level={5}>
+          {translate("caretaker_properties.fields.email")}
+        </Title>
+        <EmailField value={record?.email} />
+        <Title level={5}>
+          {translate("caretaker_properties.fields.property_ids")}
+        </Title>
+        {propertyIsLoading && record?.property_ids?.length ? (
+          <>Loading...</>
+        ) : (
+          <></>
+        )}
+      </Show>
+    </CanAccess>
   );
 };

@@ -4,6 +4,7 @@ import {
   BaseRecord,
   useTranslate,
   useMany,
+  CanAccess,
 } from "@refinedev/core";
 import {
   useTable,
@@ -32,47 +33,49 @@ export const CaretakersList: React.FC<IResourceComponentsProps> = () => {
   });
 
   return (
-    <List>
-      <Table {...tableProps} rowKey="id">
-        <Table.Column
-          dataIndex="id"
-          title={translate("caretaker_properties.fields.id")}
-        />
-        <Table.Column
-          dataIndex="name"
-          title={translate("caretaker_properties.fields.name")}
-        />
-        <Table.Column
-          dataIndex={["email"]}
-          title={translate("caretaker_properties.fields.email")}
-          render={(value: any) => <EmailField value={value} />}
-        />
-        <Table.Column
-          dataIndex="property_ids"
-          title={translate("caretaker_properties.fields.property_ids")}
-          render={(value: any[]) =>
-            propertyIsLoading ? (
-              <>Loading...</>
-            ) : (
-              <>
-                {value?.map((item, index) => (
-                  <TagField key={index} value={item} />
-                ))}
-              </>
-            )
-          }
-        />
-        <Table.Column
-          title={translate("table.actions")}
-          dataIndex="actions"
-          render={(_, record: BaseRecord) => (
-            <Space>
-              <EditButton hideText size="small" recordItemId={record.id} />
-              <ShowButton hideText size="small" recordItemId={record.id} />
-            </Space>
-          )}
-        />
-      </Table>
-    </List>
+    <CanAccess resource="caretaker_properties" action="list" fallback={<h1>You're not authorized to access this resource</h1>}>
+      <List>
+        <Table {...tableProps} rowKey="id">
+          <Table.Column
+            dataIndex="id"
+            title={translate("caretaker_properties.fields.id")}
+          />
+          <Table.Column
+            dataIndex="name"
+            title={translate("caretaker_properties.fields.name")}
+          />
+          <Table.Column
+            dataIndex={["email"]}
+            title={translate("caretaker_properties.fields.email")}
+            render={(value: any) => <EmailField value={value} />}
+          />
+          <Table.Column
+            dataIndex="property_ids"
+            title={translate("caretaker_properties.fields.property_ids")}
+            render={(value: any[]) =>
+              propertyIsLoading ? (
+                <>Loading...</>
+              ) : (
+                <>
+                  {value?.map((item, index) => (
+                    <TagField key={index} value={item} />
+                  ))}
+                </>
+              )
+            }
+          />
+          <Table.Column
+            title={translate("table.actions")}
+            dataIndex="actions"
+            render={(_, record: BaseRecord) => (
+              <Space>
+                <EditButton hideText size="small" recordItemId={record.id} />
+                <ShowButton hideText size="small" recordItemId={record.id} />
+              </Space>
+            )}
+          />
+        </Table>
+      </List>
+    </CanAccess>
   );
 };
