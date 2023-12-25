@@ -12,10 +12,11 @@ export interface Amenity {
 
 interface AmenityListProps {
   onChange: (amenities: string[]) => void;
+  existingAmenitites?: string[];
 }
 
-const AmenityList: React.FC<AmenityListProps> = ({ onChange }) => {
-  const [amenities, setAmenities] = useState<string[]>([]);
+const AmenityList: React.FC<AmenityListProps> = ({ onChange, existingAmenitites }) => {
+  const [amenities, setAmenities] = useState<string[]>([...(existingAmenitites || [])]);
 
   const handleAddAmenity = (amenity: string) => {
     if (amenities.includes(amenity)) return;

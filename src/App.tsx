@@ -19,8 +19,8 @@ import routerBindings, {
   NavigateToResource,
   UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
-// import { dataProvider } from "./dataProvider";
-import dataProvider from "@refinedev/simple-rest";
+import { dataProvider } from "./dataProvider";
+// import dataProvider from "@refinedev/simple-rest";
 
 import { App as AntdApp, ConfigProvider } from "antd";
 import { useTranslation } from "react-i18next";

@@ -1,13 +1,26 @@
-import React from "react";
-import { IResourceComponentsProps, useTranslate } from "@refinedev/core";
+import React, { useState } from "react";
+import { IResourceComponentsProps, useTranslate, useSelect } from "@refinedev/core";
 import { Edit, useForm } from "@refinedev/antd";
-import { Form, Input } from "antd";
+import { Form, Input, Select } from "antd";
+import AmenityList from "../../components/properties/AmenityList";
+
 
 export const PropertyEdit: React.FC<IResourceComponentsProps> = () => {
     const translate = useTranslate();
     const { formProps, saveButtonProps, queryResult } = useForm();
 
     const propertiesData = queryResult?.data?.data;
+
+    const handleAmenitiesChange = (amenities: string[]) => {
+        // Log the changes to the console
+        // console.log("Parent component onChange:", amenities);
+        return amenities;
+      };
+
+    //   const { selectProps: propertySelectProps } = useSelect({
+    //     resource: "properties",
+    //     defaultValue: propertiesData?.amenities,
+    //   });
 
     return (
         <Edit saveButtonProps={saveButtonProps}>
@@ -122,19 +135,14 @@ export const PropertyEdit: React.FC<IResourceComponentsProps> = () => {
                 >
                     <Input />
                 </Form.Item>
-                <>
-                    {(propertiesData?.amenities as any[])?.map(
-                        (item, index) => (
-                            <Form.Item
-                                key={index}
-                                label={translate("properties.fields.amenities")}
-                                name={["amenities", index]}
-                            >
-                                <Input type="text" />
-                            </Form.Item>
-                        ),
-                    )}
-                </>
+                <Form.Item
+                    label={translate("properties.fields.amenities")}
+                    name={["amenities"]}
+                    >
+                    <AmenityList onChange={handleAmenitiesChange} existingAmenitites={propertiesData?.amenities}/>
+                    
+                     {/* <Select mode="multiple" {...propertySelectProps} /> */}
+                </Form.Item>
             </Form>
         </Edit>
     );

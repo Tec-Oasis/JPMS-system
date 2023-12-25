@@ -13,6 +13,8 @@ export const CaretakersCreate: React.FC<IResourceComponentsProps> = () => {
 
   const { selectProps: propertySelectProps } = useSelect({
     resource: "properties",
+    optionLabel: "name",
+    optionValue: "id",
   });
 
   return (

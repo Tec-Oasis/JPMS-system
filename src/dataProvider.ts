@@ -44,7 +44,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
   update: async ({ resource, id, variables }) => {
     const url = `${apiUrl}/${resource}/${id}`;
 
-    const { data } = await axiosInstance.put(url, variables);
+    const { data } = await axiosInstance.patch(url, variables);
 
     return {
       data,
@@ -71,6 +71,55 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
     return {
       data,
     };
+  },
+
+  custom: async ({
+    url,
+    method,
+    sorters,
+    payload,
+    query,
+    headers,
+  }) => {
+    let requestUrl = `${url}?`;
+
+    if (sorters && sorters.length > 0) {
+      const sortQuery = {
+        _sort: sorters[0].field,
+        _order: sorters[0].order,
+      };
+      requestUrl = `${requestUrl}&${stringify(sortQuery)}`;
+    }
+
+    if (query) {
+      requestUrl = `${requestUrl}&${stringify(query)}`;
+    }
+
+    let axiosResponse;
+    switch (method) {
+      case "put":
+      case "post":
+      case "patch":
+        axiosResponse = await axiosInstance[method](url, payload, {
+          headers,
+        });
+        break;
+      case "delete":
+        axiosResponse = await axiosInstance.delete(url, {
+          data: payload,
+          headers: headers,
+        });
+        break;
+      default:
+        axiosResponse = await axiosInstance.get(requestUrl, {
+          headers,
+        });
+        break;
+    }
+
+    const { data } = axiosResponse;
+
+    return { data };
   },
 
   getApiUrl: () => apiUrl,

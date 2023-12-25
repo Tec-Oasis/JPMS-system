@@ -1,9 +1,8 @@
 import axios from "axios";
 import { AuthBindings } from "@refinedev/core";
 
-// const serverUrl = import.meta.env.VITE_DEVELOPMENT_SERVER_URL;
-const serverUrl = import.meta.env.VITE_PRODUCTION_SERVER_URL;
-
+const serverUrl = import.meta.env.VITE_DEVELOPMENT_SERVER_URL;
+// const serverUrl = import.meta.env.VITE_PRODUCTION_SERVER_URL;
 
 export const authProvider: AuthBindings = {
 
@@ -27,7 +26,6 @@ export const authProvider: AuthBindings = {
     //  and the client would store the token in local storage along with the user object.
 
     if (userData) {
-      console.log("success", email, password);
       localStorage.setItem("token", userData?.token);
       localStorage.setItem("user_data", JSON.stringify(userData?.user));
       return {
