@@ -3,7 +3,7 @@ import {
   IResourceComponentsProps,
   BaseRecord,
   useTranslate,
-  useMany,
+  useList,
   CanAccess,
 } from "@refinedev/core";
 import {
@@ -22,14 +22,8 @@ export const CaretakersList: React.FC<IResourceComponentsProps> = () => {
     syncWithLocation: true,
   });
 
-  const { data: propertyData, isLoading: propertyIsLoading } = useMany({
+  const { data: properties, isLoading: propertiesIsLoading } = useList({
     resource: "properties",
-    ids: [].concat(
-      ...(tableProps?.dataSource?.map((item) => item?.property_ids) ?? [])
-    ),
-    queryOptions: {
-      enabled: !!tableProps?.dataSource,
-    },
   });
 
   return (
@@ -53,14 +47,20 @@ export const CaretakersList: React.FC<IResourceComponentsProps> = () => {
             dataIndex="property_ids"
             title={translate("caretaker_properties.fields.property_ids")}
             render={(value: any[]) =>
-              propertyIsLoading ? (
+              propertiesIsLoading ? (
                 <>Loading...</>
               ) : (
+                // <>
+                //   {value?.map((item, index) => (
+                //     <TagField key={index} value={item} />
+                //   ))}
+                // </>
                 <>
-                  {value?.map((item, index) => (
-                    <TagField key={index} value={item} />
-                  ))}
-                </>
+                {value?.map((propertyId, index) => {
+                  const property = properties?.data?.find((property: any) => property.id === propertyId);
+                  return <TagField key={index} value={property?.name} />;
+                })}
+              </>
               )
             }
           />

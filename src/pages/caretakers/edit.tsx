@@ -15,7 +15,8 @@ export const CaretakersEdit: React.FC<IResourceComponentsProps> = () => {
 
   const { selectProps: propertySelectProps } = useSelect({
     resource: "properties",
-    defaultValue: caretakersData?.property_ids,
+    optionLabel: "name",
+    optionValue: "id",
   });
 
   return (
