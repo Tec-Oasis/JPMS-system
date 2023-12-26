@@ -45,6 +45,12 @@ import {
   CaretakersEdit,
   CaretakersShow,
 } from "./pages/caretakers";
+
+import { CustomerList, CustomerShow } from "./pages/customers";
+import { TenantList, TenantShow } from "./pages/tenants";
+import { ContractList, ContractShow } from "./pages/contracts";
+import { InvoiceList, InvoiceShow } from "./pages/invoices";
+
 // import { UserList, UserCreate } from "./pages/users";
 
 function App() {
@@ -115,6 +121,46 @@ function App() {
                         identifier: "id",
                         dataProviderName: "resys",
                         label: "Caretakers",
+                      },
+                    },
+                    {
+                      name: "customers",
+                      list: "customers",
+                      show: "/customers/show/:id",
+                      meta: {
+                        identifier: "id",
+                        dataProviderName: "resys",
+                        label: "Customers",
+                      },
+                    },
+                    {
+                      name: "tenants",
+                      list: "tenants",
+                      show: "/tenants/show/:id",
+                      meta: {
+                        identifier: "id",
+                        dataProviderName: "resys",
+                        label: "Tenants",
+                      },
+                    },
+                    {
+                      name: "contracts",
+                      list: "contracts",
+                      show: "/contracts/show/:id",
+                      meta: {
+                        identifier: "id",
+                        dataProviderName: "resys",
+                        label: "Contracts",
+                      },
+                    },
+                    {
+                      name: "invoices",
+                      list: "invoices",
+                      show: "/invoices/show/:id",
+                      meta: {
+                        identifier: "id",
+                        dataProviderName: "resys",
+                        label: "Invoices",
                       },
                     },
 
@@ -238,6 +284,23 @@ function App() {
                         <Route path="edit/:id" element={<CaretakersEdit />} />
                         <Route path="show/:id" element={<CaretakersShow />} />
                       </Route>
+                      <Route path="customers">
+                        <Route index element={<CustomerList />} />
+                        <Route path="show/:id" element={<CustomerShow />} />
+                      </Route>
+                      <Route path="tenants">
+                        <Route index element={<TenantList />} />
+                        <Route path="show/:id" element={<TenantShow />} />
+                      </Route>
+                      <Route path="contracts">
+                        <Route index element={<ContractList />} />
+                        <Route path="show/:id" element={<ContractShow />} />
+                      </Route>
+                      <Route path="invoices">
+                        <Route index element={<InvoiceList />} />
+                        <Route path="show/:id" element={<InvoiceShow />} />
+                      </Route>
+                      
                       {/* <Route path="/users">
                         <Route index element={<UserList />} />
                         <Route path="create" element={<UserCreate />} />

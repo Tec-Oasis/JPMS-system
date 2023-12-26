@@ -39,9 +39,50 @@ export const accessControlProvider: AccessControlProvider = {
       };
     }
 
+    if (
+      resource === "customers" &&
+      ["list", "show"].includes(action) &&
+      (role === "manager" || role === "caretaker")
+    ) {
+      return {
+        can: true,
+      };
+    }
+
+    if (
+      resource === "tenants" &&
+      ["list", "show"].includes(action) &&
+      (role === "manager" || role === "caretaker")
+    ) {
+      return {
+        can: true,
+      };
+    }
+
+    if (
+      resource === "contracts" &&
+      ["list", "show"].includes(action) &&
+      (role === "manager" || role === "caretaker")
+    ) {
+      return {
+        can: true,
+      };
+    }
+
+    if (
+      resource === "invoices" &&
+      ["list", "show"].includes(action) &&
+      (role === "manager" || role === "caretaker")
+    ) {
+      return {
+        can: true,
+      };
+    }
+
     return {
       can: false,
       reason: "Unauthorized",
     };
+
   },
 };
