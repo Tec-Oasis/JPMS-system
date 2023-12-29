@@ -156,6 +156,36 @@
       "amenities": "المزايا"
     }
   },
+  "contracts":{
+    "contracts": "العقود",
+    "propertyCard": {
+      "title": "تفاصيل العقار",
+      "rooms": "الغرف"
+    },
+    "status": {
+      "active": "هذا العقد فعال",
+      "inactive": "هذا العقد غير فعال"
+    },
+    "invoicesCountCard": {
+      "title": "عدد الفواتير",
+      "currency": "رنجت"
+    },
+    "unpaidInvoicesCard": {
+      "title": "غير مدفوعة (بالكامل/جزئيًا)",
+      "remaining": "المتبقي للدفع",
+      "invoice": "فاتورة"
+    },
+    "fields": {
+      "title": "العقود",
+      "contract_id": "المعرف",
+      "property_id": "العقار",
+      "tenant_id": "المستأجر",
+      "start_date": "تاريخ البدء",
+      "end_date": "تاريخ الانتهاء",
+      "rent": "الإيجار",
+      "status": "الحالة"
+    }
+  },
   "documentTitle": {
     "default": "تحسين",
     "suffix": " | تحسين",

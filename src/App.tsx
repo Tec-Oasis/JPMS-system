@@ -150,7 +150,7 @@ function App() {
                       meta: {
                         identifier: "id",
                         dataProviderName: "resys",
-                        label: "Contracts",
+                        // label: "Contracts",
                       },
                     },
                     {

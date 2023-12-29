@@ -158,6 +158,34 @@
       "amenities": "amenities"
     }
   },
+  "contracts": {
+    "contracts": "Contracts",
+    "propertyCard": {
+      "title": "Property Details",
+      "rooms": "Rooms"
+    },
+    "status": {
+      "active": "This contract is active",
+      "inactive": "this contract is inactive"
+    },
+    "invoicesCountCard": {
+      "title": "Invoices Issued",
+      "currency": "RM"
+    },
+    "unpaidInvoicesCard": {
+      "title": "Unpaid (fully/partially)",
+      "remaining": "Remaining to pay",
+      "invoice" : "invoice"
+    },
+    "fields": {
+      "id": "Id",
+      "title": "Title",
+      "content": "Content",
+      "status": "Status",
+      "createdAt": "Created At",
+      "category": "Category"
+    }
+  },
   "documentTitle": {
     "default": "refine",
     "suffix": " | refine",
