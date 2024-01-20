@@ -50,6 +50,7 @@ import { Login } from "./pages/login";
 import { Register } from "./pages/register";
 import { AntdInferencer } from "@refinedev/inferencer/antd";
 import { PropertyEdit } from "./pages/properties/edit";
+import { PropertyShow } from "./pages/properties/show";
 import {
   CaretakersList,
   CaretakersCreate,
@@ -330,7 +331,7 @@ function App() {
                         <Route index element={<PropertyList />} />
                         <Route path="create" element={<PropertyCreate />} />
                         <Route path="edit/:id" element={<PropertyEdit />} />
-                        <Route path="show/:id" element={<AntdInferencer />} />
+                        <Route path="show/:id" element={<PropertyShow />} />
                       </Route>
                       <Route path="caretaker_properties">
                         <Route index element={<CaretakersList />} />
