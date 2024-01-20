@@ -2,6 +2,17 @@ import { useEffect, useState } from "react";
 import { Authenticated, Refine } from "@refinedev/core";
 import { DevtoolsProvider } from "@refinedev/devtools";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
+import {
+  DashboardOutlined,
+  HomeOutlined,
+  UsergroupAddOutlined,
+} from "@ant-design/icons";
+import { FaPeopleRoof } from "react-icons/fa6";
+import { FaDollarSign, FaRegMoneyBillAlt } from "react-icons/fa";
+import {
+  LiaFileContractSolid,
+  LiaFileInvoiceDollarSolid,
+} from "react-icons/lia";
 
 import {
   ErrorComponent,
@@ -22,9 +33,9 @@ import routerBindings, {
 import { dataProvider } from "./dataProvider";
 // import dataProvider from "@refinedev/simple-rest";
 
-import { App as AntdApp, ConfigProvider } from "antd";
+import { App as AntdApp, ConfigProvider, Menu } from "antd";
 import { useTranslation } from "react-i18next";
-import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Outlet, Route, Routes, Link } from "react-router-dom";
 
 import { accessControlProvider } from "./access-control-provider";
 import { authProvider } from "./authProvider";
@@ -51,7 +62,18 @@ import { TenantList, TenantShow } from "./pages/tenants";
 import { ContractList, ContractShow } from "./pages/contracts";
 import { InvoiceList, InvoiceShow } from "./pages/invoices";
 
+import Dashboard from "./components/Dashboard";
+
 // import { UserList, UserCreate } from "./pages/users";
+
+const DashboardMenuItem = () => (
+  <Menu.Item key="dashboard" style={{ paddingLeft: "24px" }}>
+    <Link to="/">
+      <DashboardOutlined />
+      <span>Dashboard</span>
+    </Link>
+  </Menu.Item>
+);
 
 function App() {
   const { t, i18n } = useTranslation();
@@ -99,6 +121,7 @@ function App() {
                       meta: {
                         identifier: "id",
                         dataProviderName: "resys",
+                        icon: <HomeOutlined />,
                       },
                     },
                     // {
@@ -120,18 +143,19 @@ function App() {
                         identifier: "id",
                         dataProviderName: "resys",
                         label: "Caretakers",
+                        icon: <UsergroupAddOutlined />,
                       },
                     },
-                    {
-                      name: "customers",
-                      list: "customers",
-                      show: "/customers/show/:id",
-                      meta: {
-                        identifier: "id",
-                        dataProviderName: "resys",
-                        label: "Customers",
-                      },
-                    },
+                    // {
+                    //   name: "customers",
+                    //   list: "customers",
+                    //   show: "/customers/show/:id",
+                    //   meta: {
+                    //     identifier: "id",
+                    //     dataProviderName: "resys",
+                    //     label: "Customers",
+                    //   },
+                    // },
                     {
                       name: "tenants",
                       list: "tenants",
@@ -140,6 +164,7 @@ function App() {
                         identifier: "id",
                         dataProviderName: "resys",
                         label: "Tenants",
+                        icon: <FaPeopleRoof />,
                       },
                     },
                     {
@@ -149,9 +174,11 @@ function App() {
                       meta: {
                         identifier: "id",
                         dataProviderName: "resys",
-                        // label: "Contracts",
+                        icon: <LiaFileContractSolid />,
+                        label: "Contracts",
                       },
                     },
+
                     {
                       name: "invoices",
                       list: "invoices",
@@ -160,6 +187,7 @@ function App() {
                         identifier: "id",
                         dataProviderName: "resys",
                         label: "Invoices",
+                        icon: <FaRegMoneyBillAlt />,
                       },
                     },
 
@@ -222,8 +250,22 @@ function App() {
                               />
                             )}
                             Header={() => <Header sticky />}
-                            Sider={(props) => (
-                              <ThemedSiderV2 {...props} fixed />
+                            // Sider={(props) => (
+                            //   <ThemedSiderV2 {...props} fixed />
+                            // )}
+                            Sider={() => (
+                              <ThemedSiderV2
+                                // Title={({ collapsed }) => <CustomTitle collapsed={collapsed} />}
+                                render={({ items, logout, collapsed }) => {
+                                  return (
+                                    <>
+                                      <DashboardMenuItem />
+                                      {items}
+                                      {logout}
+                                    </>
+                                  );
+                                }}
+                              />
                             )}
                           >
                             <Outlet />
@@ -231,11 +273,11 @@ function App() {
                         </Authenticated>
                       }
                     >
-                      <Route
+                      {/* <Route
                         index
                         // element={<NavigateToResource resource="blog_posts" />}
                         element={<NavigateToResource resource="properties" />}
-                      />
+                      /> */}
 
                       {/* <Route path="/posts">
                         <Route index element={<PostList />} />
@@ -271,6 +313,8 @@ function App() {
                         <Route path="show/:id" element={<CategoryShow />} />
                       </Route>  */}
 
+                      <Route index element={<Dashboard />} />
+
                       <Route path="/properties">
                         <Route index element={<PropertyList />} />
                         <Route path="create" element={<PropertyCreate />} />
@@ -287,6 +331,7 @@ function App() {
                         <Route index element={<CustomerList />} />
                         <Route path="show/:id" element={<CustomerShow />} />
                       </Route>
+
                       <Route path="tenants">
                         <Route index element={<TenantList />} />
                         <Route path="show/:id" element={<TenantShow />} />
@@ -299,7 +344,7 @@ function App() {
                         <Route index element={<InvoiceList />} />
                         <Route path="show/:id" element={<InvoiceShow />} />
                       </Route>
-                      
+
                       {/* <Route path="/users">
                         <Route index element={<UserList />} />
                         <Route path="create" element={<UserCreate />} />

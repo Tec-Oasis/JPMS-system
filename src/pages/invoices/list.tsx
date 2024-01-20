@@ -48,10 +48,10 @@ export const InvoiceList: React.FC<IResourceComponentsProps> = () => {
           title={translate("invoices.fields.amount_paid")}
           render={(value: any) => <DateField value={value} />}
         />
-        <Table.Column
+        {/* <Table.Column
           dataIndex="notes"
           title={translate("invoices.fields.notes")}
-        />
+        /> */}
         <Table.Column
           dataIndex={["tenant_id"]}
           title={translate("invoices.fields.tenant_id")}

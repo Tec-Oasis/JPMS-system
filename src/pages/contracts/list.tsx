@@ -104,7 +104,7 @@ export const ContractList: React.FC<IResourceComponentsProps> = () => {
       <Col xl={18} xs={24}>
         <List>
           <Table {...tableProps} rowKey="id">
-            <Table.Column
+            {/* <Table.Column
               dataIndex={["tenant_id"]}
               title={translate("contracts.fields.fname")}
               render={(value: any) => {
@@ -122,6 +122,16 @@ export const ContractList: React.FC<IResourceComponentsProps> = () => {
                   (item) => item.id === value
                 );
                 return tenant?.lname;
+              }}
+            /> */}
+            <Table.Column
+              dataIndex={["tenant_id"]}
+              title={translate("contracts.fields.name")}
+              render={(value: any) => {
+                const tenant = tenantData?.data?.find(
+                  (item) => item.id === value
+                );
+                return tenant?.name;
               }}
             />
             <Table.Column

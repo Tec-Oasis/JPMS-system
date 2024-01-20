@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "dependencies": {
+    "@ant-design/charts": "^2.0.3",
     "@ant-design/icons": "^5.0.1",
     "@react-google-maps/api": "^2.19.2",
     "@refinedev/antd": "^5.7.0",
@@ -45,7 +46,6 @@
   "scripts": {
     "dev": "refine dev",
     "build": "refine build",
-
     "preview": "refine start",
     "refine": "refine"
   },

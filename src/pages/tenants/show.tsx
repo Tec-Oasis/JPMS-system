@@ -3,9 +3,15 @@ import {
   IResourceComponentsProps,
   useShow,
   useTranslate,
-  useOne,
 } from "@refinedev/core";
-import { Show, NumberField, DateField } from "@refinedev/antd";
+import {
+  Show,
+  NumberField,
+  ImageField,
+  EmailField,
+  UrlField,
+  TextField,
+} from "@refinedev/antd";
 import { Typography } from "antd";
 
 const { Title } = Typography;
@@ -17,24 +23,21 @@ export const TenantShow: React.FC<IResourceComponentsProps> = () => {
 
   const record = data?.data;
 
-  const { data: customerData, isLoading: customerIsLoading } = useOne({
-    resource: "customers",
-    id: record?.customer_id || "",
-    queryOptions: {
-      enabled: !!record,
-    },
-  });
-
   return (
     <Show isLoading={isLoading}>
       <Title level={5}>{translate("tenants.fields.ic_no")}</Title>
       <NumberField value={record?.ic_no ?? ""} />
-      <Title level={5}>{translate("tenants.fields.date_settle_in")}</Title>
-      <DateField value={record?.date_settle_in} />
       <Title level={5}>{translate("tenants.fields.id")}</Title>
       <NumberField value={record?.id ?? ""} />
-      <Title level={5}>{translate("tenants.fields.customer_id")}</Title>
-      {customerIsLoading ? <>Loading...</> : <>{customerData?.data?.id}</>}
+      <Title level={5}>{translate("tenants.fields.email")}</Title>
+      <EmailField value={record?.email} />
+      <Title level={5}>{translate("tenants.fields.phone_number")}</Title>
+      <NumberField value={record?.phone_number ?? ""} />
+      <Title level={5}>{translate("tenants.fields.picture")}</Title>
+      <ImageField style={{ maxWidth: 200 }} value={record?.picture} />
+      {/* <UrlField value={record?.picture} /> */}
+      <Title level={5}>{translate("tenants.fields.name")}</Title>
+      <TextField value={record?.name} />
     </Show>
   );
 };

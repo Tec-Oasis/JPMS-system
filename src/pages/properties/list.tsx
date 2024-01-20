@@ -75,7 +75,7 @@ export const PropertyList: React.FC<IResourceComponentsProps> = () => {
             dataIndex="property_type"
             title={translate("properties.fields.property_type")}
           />
-          <Table.Column
+          {/* <Table.Column
             dataIndex="coordinate_x"
             title={translate("properties.fields.coordinate_x")}
           />
@@ -88,10 +88,11 @@ export const PropertyList: React.FC<IResourceComponentsProps> = () => {
             title={translate("properties.fields.img")}
             render={(value: any) => <UrlField value={value} />}
           />
+          */}
           <Table.Column
             dataIndex={["description"]}
             title={translate("properties.fields.description")}
-          />
+          /> 
           <Table.Column
             dataIndex="rent"
             title={translate("properties.fields.rent")}
