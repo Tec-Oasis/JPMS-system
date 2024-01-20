@@ -8,10 +8,17 @@ const { Title, Text } = Typography;
 const { TextArea } = Input;
 
 interface ContractDetailsCardProps {
-  record: any;
+  record: {
+    img?: string;
+    name?: string;
+    description?: string;
+    rent?: number;
+    property_type?: string;
+    total_rooms?: number;
+  };
 }
 
-export const ContractDetailsCard = ({ record }: ContractDetailsCardProps) => {
+export const ContractDetailsCard: React.FC<ContractDetailsCardProps> = ({ record }) => {
   const translate = useTranslate();
 
   const [note, setNote] = useState("");

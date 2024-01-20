@@ -30,7 +30,7 @@ export const PropertyCreate: React.FC<IResourceComponentsProps> = () => {
 
   const [coordinates, setCoordinates] = useState({ lat: 0, lng: 0 });
 
-  const handleMapClick = (event: google.maps.KmlMouseEvent) => {
+  const handleMapClick = (event: google.maps.MapMouseEvent) => {
     const lat = event.latLng ? event.latLng.lat() : 0;
     const lng = event.latLng ? event.latLng.lng() : 0;
 
