@@ -35,7 +35,6 @@ import {
 const { Title } = Typography;
 
 type BaseRecord = {
-  // Optional properties
   img?: string;
   name?: string;
   description?: string;
@@ -43,7 +42,12 @@ type BaseRecord = {
   property_type?: string;
   total_rooms?: number;
   notes?: string;
-  // Add other optional properties as needed
+  fname?: string;
+  lname?: string;
+  ic_no?: string;
+  phone_country_code?: string;
+  phone_number?: string;
+  email?: string;
 };
 
 type ContractRecord = BaseRecord & {
@@ -57,7 +61,7 @@ export const ContractShow: React.FC<IResourceComponentsProps> = () => {
   const { queryResult } = useShow<ContractRecord>();
   const { data, isLoading } = queryResult;
 
-  const record: ContractRecord | undefined = data?.data;
+  const record: BaseRecord | undefined = data?.data;
 
   const { data: propertyData, isLoading: propertyIsLoading } =
     useOne<BaseRecord>({

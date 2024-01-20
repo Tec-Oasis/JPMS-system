@@ -14,7 +14,7 @@ interface TenantCardProps {
   tenantIsLoading: boolean;
 }
 
-export const TenantCard = ({ tenantData, tenantIsLoading }: TenantCardProps) => {
+export const TenantCard: React.FC<TenantCardProps> = ({ tenantData, tenantIsLoading }) => {
   const translate = useTranslate();
 
   const {

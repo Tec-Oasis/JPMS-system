@@ -7,17 +7,21 @@ import { useTranslate } from "@refinedev/core";
 const { Title, Text } = Typography;
 const { TextArea } = Input;
 
+type BaseRecord = {
+  // Optional properties
+  img?: string;
+  name?: string;
+  description?: string;
+  rent?: number;
+  property_type?: string;
+  total_rooms?: number;
+  notes?: string;
+};
+
 interface ContractDetailsCardProps {
-  record: {
-    img?: string;
-    name?: string;
-    description?: string;
-    rent?: number;
-    property_type?: string;
-    total_rooms?: number;
-    notes?: string;
-  };
+  record: BaseRecord;
 }
+
 export const ContractDetailsCard: React.FC<ContractDetailsCardProps> = ({ record }) => {
   const translate = useTranslate();
 
