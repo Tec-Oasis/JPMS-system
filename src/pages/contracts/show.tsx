@@ -76,15 +76,17 @@ export const ContractShow: React.FC<IResourceComponentsProps> = () => {
                 <InvoicesCountCard />
                 <UnpaidInvoicesCard />
               </Flex>
-              <ContractDateCard record={record} />
+              {record && <ContractDateCard record={record} />}
 
               {/* <ContractDurationCard record={record} /> */}
 
-              <ContractDetailsCard record={record} />
-              <TenantCard
-                tenantData={tenantData?.data}
-                tenantIsLoading={tenantIsLoading}
-              />
+              {record && <ContractDetailsCard record={record} />}
+              {record && tenantData?.data && (
+                <TenantCard
+                  tenantData={tenantData?.data}
+                  tenantIsLoading={tenantIsLoading}
+                />
+              )}
             </Flex>
           </Flex>
         </Flex>
