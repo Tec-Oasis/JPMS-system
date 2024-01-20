@@ -64,8 +64,7 @@ function App() {
   };
 
   const FAKE_API_URL = "https://api.fake-rest.refine.dev";
-  const RESYS_API_URL = import.meta.env.VITE_PRODUCTION_SERVER_URL;
-  // const RESYS_API_URL = import.meta.env.VITE_DEVELOPMENT_SERVER_URL;
+  const RESYS_API_URL = import.meta.env.VITE_SERVER_URL;
 
   const [role, setRole] = useState<string>("");
   useEffect(() => {

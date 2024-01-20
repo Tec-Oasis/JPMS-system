@@ -1,8 +1,7 @@
 import axios from "axios";
 import { AuthBindings } from "@refinedev/core";
 
-// const serverUrl = import.meta.env.VITE_DEVELOPMENT_SERVER_URL;
-const serverUrl = import.meta.env.VITE_PRODUCTION_SERVER_URL;
+const serverUrl = import.meta.env.VITE_SERVER_URL;
 
 export const authProvider: AuthBindings = {
 
