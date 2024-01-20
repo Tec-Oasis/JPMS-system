@@ -34,12 +34,23 @@ import {
 
 const { Title } = Typography;
 
+type ContractRecord = {
+  img?: string;
+  name?: string;
+  description?: string;
+  rent?: number;
+  property_type?: string;
+  total_rooms?: number;
+  notes?: string;
+};
+
+
 export const ContractShow: React.FC<IResourceComponentsProps> = () => {
   const translate = useTranslate();
   const { queryResult } = useShow();
   const { data, isLoading } = queryResult;
 
-  const record = data?.data;
+  const record: ContractRecord | undefined = data?.data;
 
   const { data: propertyData, isLoading: propertyIsLoading } = useOne({
     resource: "properties",
@@ -80,7 +91,7 @@ export const ContractShow: React.FC<IResourceComponentsProps> = () => {
 
               {/* <ContractDurationCard record={record} /> */}
 
-              {record && <ContractDetailsCard record={record} />}
+              {record && <ContractDetailsCard record={{ ...record, notes: record.notes || "" }} />}
               {record && tenantData?.data && (
                 <TenantCard
                   tenantData={tenantData?.data}

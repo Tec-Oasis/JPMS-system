@@ -15,9 +15,9 @@ interface ContractDetailsCardProps {
     rent?: number;
     property_type?: string;
     total_rooms?: number;
+    notes?: string;
   };
 }
-
 export const ContractDetailsCard: React.FC<ContractDetailsCardProps> = ({ record }) => {
   const translate = useTranslate();
 
