@@ -113,6 +113,13 @@ function App() {
                   i18nProvider={i18nProvider}
                   resources={[
                     {
+                      name: "dashboard",
+                      list: () => null,
+                      meta: {
+                        icon: <DashboardOutlined />,
+                      },
+                    },
+                    {
                       name: "properties",
                       list: "/properties",
                       create: "/properties/create",
@@ -124,15 +131,6 @@ function App() {
                         icon: <HomeOutlined />,
                       },
                     },
-                    // {
-                    //   name: "users",
-                    //   list: "/users",
-                    //   create: "/users/create",
-                    //   meta: {
-                    //     identifier: "id",
-                    //     dataProviderName: "resys",
-                    //   },
-                    // },
                     {
                       name: "caretaker_properties",
                       list: "caretaker_properties",
@@ -146,6 +144,16 @@ function App() {
                         icon: <UsergroupAddOutlined />,
                       },
                     },
+                    // {
+                    //   name: "users",
+                    //   list: "/users",
+                    //   create: "/users/create",
+                    //   meta: {
+                    //     identifier: "id",
+                    //     dataProviderName: "resys",
+                    //   },
+                    // },
+
                     // {
                     //   name: "customers",
                     //   list: "customers",
@@ -273,11 +281,12 @@ function App() {
                         </Authenticated>
                       }
                     >
-                      {/* <Route
+                      <Route
                         index
                         // element={<NavigateToResource resource="blog_posts" />}
-                        element={<NavigateToResource resource="properties" />}
-                      /> */}
+                        // element={<NavigateToResource resource="properties" />}
+                        element={<NavigateToResource resource="dashboard" />}
+                      />
 
                       {/* <Route path="/posts">
                         <Route index element={<PostList />} />
@@ -313,7 +322,9 @@ function App() {
                         <Route path="show/:id" element={<CategoryShow />} />
                       </Route>  */}
 
-                      <Route index element={<Dashboard />} />
+                      <Route path="/dashboard">
+                        <Route index element={<Dashboard />} />
+                      </Route>
 
                       <Route path="/properties">
                         <Route index element={<PropertyList />} />
