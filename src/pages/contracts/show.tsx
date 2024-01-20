@@ -34,7 +34,8 @@ import {
 
 const { Title } = Typography;
 
-type ContractRecord = {
+type BaseRecord = {
+  // Optional properties
   img?: string;
   name?: string;
   description?: string;
@@ -42,25 +43,32 @@ type ContractRecord = {
   property_type?: string;
   total_rooms?: number;
   notes?: string;
+  // Add other optional properties as needed
 };
 
+type ContractRecord = BaseRecord & {
+  // Additional properties specific to contracts
+  property_id: string;
+  tenant_id: string;
+};
 
 export const ContractShow: React.FC<IResourceComponentsProps> = () => {
   const translate = useTranslate();
-  const { queryResult } = useShow();
+  const { queryResult } = useShow<ContractRecord>();
   const { data, isLoading } = queryResult;
 
   const record: ContractRecord | undefined = data?.data;
 
-  const { data: propertyData, isLoading: propertyIsLoading } = useOne({
-    resource: "properties",
-    id: record?.property_id || "",
-    queryOptions: {
-      enabled: !!record,
-    },
-  });
+  const { data: propertyData, isLoading: propertyIsLoading } =
+    useOne<BaseRecord>({
+      resource: "properties",
+      id: record?.property_id || "",
+      queryOptions: {
+        enabled: !!record,
+      },
+    });
 
-  const { data: tenantData, isLoading: tenantIsLoading } = useOne({
+  const { data: tenantData, isLoading: tenantIsLoading } = useOne<BaseRecord>({
     resource: "tenants",
     id: record?.tenant_id || "",
     queryOptions: {
@@ -91,7 +99,19 @@ export const ContractShow: React.FC<IResourceComponentsProps> = () => {
 
               {/* <ContractDurationCard record={record} /> */}
 
-              {record && <ContractDetailsCard record={{ ...record, notes: record.notes || "" }} />}
+              {record && (
+                <ContractDetailsCard
+                  record={{
+                    img: record.img || "",
+                    name: record.name || "",
+                    description: record.description || "",
+                    rent: record.rent || 0,
+                    property_type: record.property_type || "",
+                    total_rooms: record.total_rooms || 0,
+                    notes: record.notes || "",
+                  }}
+                />
+              )}
               {record && tenantData?.data && (
                 <TenantCard
                   tenantData={tenantData?.data}
