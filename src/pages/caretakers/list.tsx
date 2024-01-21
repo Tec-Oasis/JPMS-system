@@ -45,7 +45,7 @@ export const CaretakersList: React.FC<IResourceComponentsProps> = () => {
           />
           <Table.Column
             dataIndex="property_ids"
-            title={translate("caretaker_properties.fields.property_ids")}
+            title={translate("caretaker_properties.fields.assigned_properties")}
             render={(value: any[]) =>
               propertiesIsLoading ? (
                 <>Loading...</>

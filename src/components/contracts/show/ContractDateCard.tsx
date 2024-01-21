@@ -52,20 +52,20 @@ export const ContractDateCard = ({ record }: ContractDateCardProps) => {
     >
       {/* <Statistic title="Remaining days to end of contract" /> */}
 
-      <Statistic title="Contract Start" value={startDateString} />
+      <Statistic title={translate("contracts.contractDateCard.contract_start")} value={startDateString} />
       <br />
-      <Statistic title="Contract End" value={endDateString} />
+      <Statistic title={translate("contracts.contractDateCard.contract_end")} value={endDateString} />
 
       <Divider />
 
       <Flex vertical align="center">
-        <Text type="secondary">Days Remaining to end of contract</Text>
+        <Text type="secondary">{translate("contracts.contractDateCard.daysRemaining")}</Text>
 
         <div style={{ marginTop: "10px" }}>
           <Progress
             type="circle"
             percent={remainingPercentage}
-            format={(percent) => `${remainingDays} Days`}
+            format={(percent) => `${remainingDays} ${translate("contracts.contractDateCard.days")}`}
             strokeColor="#52c41a" // color of the progress bar
             strokeLinecap="round" // shape of the progress bar end: 'round' or 'square'
             strokeWidth={4} // width of the progress bar

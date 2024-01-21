@@ -22,7 +22,9 @@ interface ContractDetailsCardProps {
   record: BaseRecord;
 }
 
-export const ContractDetailsCard: React.FC<ContractDetailsCardProps> = ({ record }) => {
+export const ContractDetailsCard: React.FC<ContractDetailsCardProps> = ({
+  record,
+}) => {
   const translate = useTranslate();
 
   const [note, setNote] = useState("");
@@ -41,12 +43,18 @@ export const ContractDetailsCard: React.FC<ContractDetailsCardProps> = ({ record
     <Card
       title={
         <>
-          <FileTextOutlined /> Contract Details
+          <FileTextOutlined />{" "}
+          {translate("contracts.contractDetailsCard.title")}
         </>
       }
-      style={{ marginTop: "10px", marginBottom:"10px", width: "100%" }}
+      style={{ marginTop: "10px", marginBottom: "10px", width: "100%" }}
     >
-      <Statistic title="Rent" value={`RM ${record?.rent ?? ""}`} />
+      <Statistic
+        title={translate("contracts.contractDetailsCard.rent")}
+        value={`${translate("contracts.contractDetailsCard.currency")} ${
+          record?.rent ?? ""
+        }`}
+      />
 
       {/* <Title level={5}>{translate("contracts.fields.active")}</Title>
       <BooleanField value={record?.active} /> */}
@@ -55,14 +63,14 @@ export const ContractDetailsCard: React.FC<ContractDetailsCardProps> = ({ record
         {/* <Title level={5}>{translate("contracts.fields.notes")}</Title> */}
 
         <div style={{ padding: "5px" }}>
-          <Text italic>Attached note</Text>
+          <Text italic>{translate("contracts.contractDetailsCard.attached_note")}</Text>
         </div>
         <TextField value={record?.notes} />
         <TextArea
           showCount
           maxLength={100}
           onChange={onChange}
-          placeholder="There is no attached note for this contract."
+          placeholder={translate("contracts.contractDetailsCard.note_placeholder")}
           style={{ height: "5rem", resize: "none" }}
         />
         <Button
@@ -70,7 +78,7 @@ export const ContractDetailsCard: React.FC<ContractDetailsCardProps> = ({ record
           style={{ backgroundColor: "#27AE60", marginTop: "10px" }}
           onClick={handleNoteSubmit}
         >
-          Submit Note
+          {translate("contracts.contractDetailsCard.submit_note")}
         </Button>
       </div>
     </Card>

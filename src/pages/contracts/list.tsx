@@ -136,7 +136,7 @@ export const ContractList: React.FC<IResourceComponentsProps> = () => {
             />
             <Table.Column
               dataIndex={["property_id"]}
-              title={translate("contracts.fields.property_id")}
+              title={translate("contracts.fields.property")}
               render={(value: any) => {
                 const property = propertyData?.data?.find(
                   (item) => item.id === value

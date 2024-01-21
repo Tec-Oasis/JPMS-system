@@ -18,6 +18,15 @@ export const accessControlProvider: AccessControlProvider = {
         can: true,
       };
     }
+    if (
+      resource === "dashboard" &&
+      ["list"].includes(action) &&
+      (role === "manager" || role === "caretaker")
+    ) {
+      return {
+        can: true,
+      };
+    }
 
     if (
       resource === "properties" &&

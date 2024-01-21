@@ -117,7 +117,9 @@ function App() {
                       name: "dashboard",
                       list: () => null,
                       meta: {
+                        identifier: "id",
                         icon: <DashboardOutlined />,
+                        dataProviderName: "resys",
                       },
                     },
                     {
@@ -134,14 +136,14 @@ function App() {
                     },
                     {
                       name: "caretaker_properties",
-                      list: "caretaker_properties",
+                      list: "/caretaker_properties",
                       create: "/caretaker_properties/create",
                       edit: "/caretaker_properties/edit/:id",
                       show: "/caretaker_properties/show/:id",
                       meta: {
                         identifier: "id",
                         dataProviderName: "resys",
-                        label: "Caretakers",
+                        // label: "Caretakers",
                         icon: <UsergroupAddOutlined />,
                       },
                     },
@@ -167,35 +169,32 @@ function App() {
                     // },
                     {
                       name: "tenants",
-                      list: "tenants",
+                      list: "/tenants",
                       show: "/tenants/show/:id",
                       meta: {
                         identifier: "id",
                         dataProviderName: "resys",
-                        label: "Tenants",
                         icon: <FaPeopleRoof />,
                       },
                     },
                     {
                       name: "contracts",
-                      list: "contracts",
+                      list: "/contracts",
                       show: "/contracts/show/:id",
                       meta: {
                         identifier: "id",
                         dataProviderName: "resys",
                         icon: <LiaFileContractSolid />,
-                        label: "Contracts",
                       },
                     },
 
                     {
                       name: "invoices",
-                      list: "invoices",
+                      list: "/invoices",
                       show: "/invoices/show/:id",
                       meta: {
                         identifier: "id",
                         dataProviderName: "resys",
-                        label: "Invoices",
                         icon: <FaRegMoneyBillAlt />,
                       },
                     },
@@ -259,23 +258,23 @@ function App() {
                               />
                             )}
                             Header={() => <Header sticky />}
-                            // Sider={(props) => (
-                            //   <ThemedSiderV2 {...props} fixed />
-                            // )}
-                            Sider={() => (
-                              <ThemedSiderV2
-                                // Title={({ collapsed }) => <CustomTitle collapsed={collapsed} />}
-                                render={({ items, logout, collapsed }) => {
-                                  return (
-                                    <>
-                                      <DashboardMenuItem />
-                                      {items}
-                                      {logout}
-                                    </>
-                                  );
-                                }}
-                              />
+                            Sider={(props) => (
+                              <ThemedSiderV2 {...props} fixed />
                             )}
+                            // Sider={() => (
+                            //   <ThemedSiderV2
+                            //     // Title={({ collapsed }) => <CustomTitle collapsed={collapsed} />}
+                            //     render={({ items, logout, collapsed }) => {
+                            //       return (
+                            //         <>
+                            //           <DashboardMenuItem />
+                            //           {items}
+                            //           {logout}
+                            //         </>
+                            //       );
+                            //     }}
+                            //   />
+                            // )}
                           >
                             <Outlet />
                           </ThemedLayoutV2>
@@ -326,13 +325,13 @@ function App() {
                       <Route path="/dashboard">
                         <Route index element={<Dashboard />} />
                       </Route>
-
                       <Route path="/properties">
                         <Route index element={<PropertyList />} />
                         <Route path="create" element={<PropertyCreate />} />
                         <Route path="edit/:id" element={<PropertyEdit />} />
                         <Route path="show/:id" element={<PropertyShow />} />
                       </Route>
+
                       <Route path="caretaker_properties">
                         <Route index element={<CaretakersList />} />
                         <Route path="create" element={<CaretakersCreate />} />

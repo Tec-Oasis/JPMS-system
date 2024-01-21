@@ -107,7 +107,7 @@
     "clone": "Clone"
   },
   "dashboard": {
-    "title": "Dashboard"
+    "dashboard": "Dashboard"
   },
   "blog_posts": {
     "blog_posts": "Blog Posts",
@@ -156,10 +156,54 @@
       "rent": "rent",
       "location": "location",
       "amenities": "amenities"
+    },
+    "titles": {
+      "create": "Create Property",
+      "edit": "Edit Property",
+      "list": "Properties",
+      "show": "Show Property"
+    }
+  },
+  "caretaker_properties": {
+    "caretaker_properties": "Caretakers",
+    "fields": {
+      "id": "Id",
+      "name": "Name",
+      "email": "email",
+      "assigned_properties": "Assigned Properties"
+    },
+    "titles": {
+      "create": "Create Caretaker",
+      "edit": "Edit Caretaker",
+      "list": "Caretakers",
+      "show": "Show Caretaker"
+    }
+  },
+  "tenants": {
+    "tenants": "Tenants",
+    "fields": {
+      "id": "Id",
+      "name": "Name",
+      "email": "email",
+      "phone_number": "phone",
+      "ic_no": "IC No.",
+      "customer_id": "Customer Id"
+    },
+    "titles": {
+      "create": "Create Tenant",
+      "edit": "Edit Tenant",
+      "list": "Tenants",
+      "show": "Show Tenant"
     }
   },
   "contracts": {
     "contracts": "Contracts",
+    "titles": {
+      "create": "Create Contract",
+      "edit": "Edit Contract",
+      "list": "Contracts",
+      "show": "Show Contract"
+    },
     "propertyCard": {
       "title": "Property Details",
       "rooms": "Rooms"
@@ -177,13 +221,51 @@
       "remaining": "Remaining to pay",
       "invoice" : "invoice"
     },
+    "contractDateCard": {
+      "contract_start": "Start of Contract",
+      "contract_end": "End of Contract",
+      "days": "Days",
+      "daysRemaining": "Days Remaining to end of Contract"
+    },
+    "contractDetailsCard":{
+      "title": "Contract Details",
+      "rent": "Rent",
+      "currency": "RM",
+      "attached_note": "Attached Note",
+      "note_placeholder": "There is no attached note for this contract.",
+      "submit_note": "Submit Note"
+    },
+    "tenantCard": {
+      "title": "Tenant Details",
+      "name": "Name",
+      "email": "Email",
+      "phone_number": "Phone Number",
+      "ic_no": "IC No."
+    },
+    "fields": {
+      "property": "Property",
+      "name": "Name",
+      "contract_start": "Start of Contract",
+      "contract_end": "End of Contract",
+      "rent": "Rent",
+      "active": "Active?"
+    }
+  },
+  "invoices": {
+    "invoices": "Invoices",
+    "titles": {
+      "create": "Create Invoice",
+      "edit": "Edit Invoice",
+      "list": "Invoices",
+      "show": "Show Invoice"
+    },
     "fields": {
       "id": "Id",
-      "title": "Title",
-      "content": "Content",
-      "status": "Status",
-      "createdAt": "Created At",
-      "category": "Category"
+      "invoice_date": "Invoice Date",
+      "amount": "Amount",
+      "amount_paid": "Amount Paid",
+      "tenant_id": "Tenant",
+      "contract_id": "Contract"
     }
   },
   "documentTitle": {

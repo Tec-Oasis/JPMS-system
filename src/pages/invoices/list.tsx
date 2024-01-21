@@ -33,6 +33,7 @@ export const InvoiceList: React.FC<IResourceComponentsProps> = () => {
   return (
     <List>
       <Table {...tableProps} rowKey="id">
+      <Table.Column dataIndex="id" title={translate("invoices.fields.id")} />
         <Table.Column
           dataIndex={["invoice_date"]}
           title={translate("invoices.fields.invoice_date")}
@@ -60,7 +61,7 @@ export const InvoiceList: React.FC<IResourceComponentsProps> = () => {
           dataIndex={["contract_id"]}
           title={translate("invoices.fields.contract_id")}
         />
-        <Table.Column dataIndex="id" title={translate("invoices.fields.id")} />
+        
         <Table.Column
           title={translate("table.actions")}
           dataIndex="actions"

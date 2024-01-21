@@ -107,7 +107,7 @@
     "clone": "استنساخ"
   },
   "dashboard": {
-    "title": "لوحة التحكم"
+    "dashboard": "لوحة التحكم"
   },
   "blog_posts": {
     "blog_posts": "مقالات البلوج",
@@ -154,10 +154,54 @@
       "rent": "الإيجار",
       "location": "الموقع",
       "amenities": "المزايا"
+    },
+    "titles": {
+      "create": "إنشاء العقار",
+      "edit": "تحرير العقار",
+      "list": "العقارات",
+      "show": "عرض العقار"
+    }
+  },
+  "caretaker_properties": {
+    "caretaker_properties": "الأوصياء",
+    "fields": {
+      "id": "الرقم التعريفي",
+      "name": "الاسم",
+      "email": "البريد الإلكتروني",
+      "assigned_properties": "الممتلكات المخصصة"
+    },
+    "titles": {
+      "create": "إنشاء وصي جديد",
+      "edit": "تحرير خصائص الوصي",
+      "list": " الأوصياء",
+      "show": "عرض الوصي"
+    }
+  },
+  "tenants": {
+    "tenants": "المستأجرون",
+    "fields": {
+      "id": "الرقم التعريفي",
+      "name": "الاسم",
+      "email": "البريد الإلكتروني",
+      "phone_number": "رقم الهاتف",
+      "ic_no": "رقم الهوية",
+      "customer_id": "رقم العميل"
+    },
+    "titles": {
+      "create": "إنشاء مستأجر",
+      "edit": "تحرير مستأجر",
+      "list": "المستأجرون",
+      "show": "عرض مستأجر"
     }
   },
   "contracts":{
     "contracts": "العقود",
+    "titles": {
+      "create": "إنشاء عقد",
+      "edit": "تحرير عقد",
+      "list": "العقود",
+      "show": "عرض العقد"
+    },    
     "propertyCard": {
       "title": "تفاصيل العقار",
       "rooms": "الغرف"
@@ -175,17 +219,53 @@
       "remaining": "المتبقي للدفع",
       "invoice": "فاتورة"
     },
-    "fields": {
-      "title": "العقود",
-      "contract_id": "المعرف",
-      "property_id": "العقار",
-      "tenant_id": "المستأجر",
-      "start_date": "تاريخ البدء",
-      "end_date": "تاريخ الانتهاء",
+    "contractDateCard": {
+      "contract_start": "بداية العقد",
+      "contract_end": "نهاية العقد",
+      "days": "يوم",
+      "daysRemaining": "الأيام المتبقية حتى نهاية العقد"
+    },
+    "contractDetailsCard": {
+      "title": "تفاصيل العقد",
       "rent": "الإيجار",
-      "status": "الحالة"
+      "currency": "RM",
+      "attached_note": "ملاحظة مرفقة",
+      "note_placeholder": "لا توجد ملاحظة مرفقة لهذا العقد.",
+      "submit_note": "إرسال الملاحظة"
+    },
+    "tenantCard": {
+      "title": "تفاصيل المستأجر",
+      "name": "الاسم",
+      "email": "البريد الإلكتروني",
+      "phone_number": "رقم الهاتف",
+      "ic_no": "رقم الهوية"
+    },
+    "fields": {
+      "property": "العقار",
+      "name": "الاسم",
+      "contract_start": "بداية العقد",
+      "contract_end": "نهاية العقد",
+      "rent": "الإيجار",
+      "active": "نشط؟"
     }
   },
+  "invoices": {
+    "invoices": "الفواتير",
+    "titles": {
+      "create": "إنشاء فاتورة",
+      "edit": "تحرير فاتورة",
+      "list": "الفواتير",
+      "show": "عرض الفاتورة"
+    },
+    "fields": {
+      "id": "الرقم التعريفي",
+      "invoice_date": "تاريخ الفاتورة",
+      "amount": "المبلغ",
+      "amount_paid": "المبلغ المدفوع",
+      "tenant_id": "المستأجر",
+      "contract_id": "العقد"
+    }
+  },  
   "documentTitle": {
     "default": "تحسين",
     "suffix": " | تحسين",

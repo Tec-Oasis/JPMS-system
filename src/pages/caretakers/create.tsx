@@ -48,7 +48,7 @@ export const CaretakersCreate: React.FC<IResourceComponentsProps> = () => {
             <Input />
           </Form.Item>
           <Form.Item
-            label={translate("caretaker_properties.fields.property_ids")}
+            label={translate("caretaker_properties.fields.assigned_properties")}
             name={"property_ids"}
             rules={[
               {

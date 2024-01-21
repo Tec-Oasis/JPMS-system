@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslate } from "@refinedev/core";
-import { Card, Spin, Descriptions, Image } from "antd";
+import { Card, Spin, Descriptions, Image, Flex } from "antd";
 
 interface TenantCardProps {
   tenantData: {
@@ -35,8 +35,7 @@ export const TenantCard: React.FC<TenantCardProps> = ({
 
   return (
     <Card
-      //   title={translate("contracts.fields.tenant_id")}
-      title="Tenant Details"
+      title={translate("contracts.tenantCard.title")}
       style={{ margin: "10px", width: "100%" }}
     >
       {tenantIsLoading ? (
@@ -49,24 +48,33 @@ export const TenantCard: React.FC<TenantCardProps> = ({
 
           {/* <Descriptions.Item label="Last Name">{tenantLname}</Descriptions.Item> */}
 
-          <Descriptions.Item >
+          <Descriptions.Item>
             <Image
               src={tenantPicture}
+              style={{ borderRadius: "50%" }}
               alt="Tenant Picture"
-              style={{ maxWidth: 200, borderRadius: "50%" }}
+              preview={false}
             />
           </Descriptions.Item>
 
-          <Descriptions.Item label="Name">{tenantName}</Descriptions.Item>
-
-          <Descriptions.Item label="IC Number">{tenantIcNo}</Descriptions.Item>
-          <Descriptions.Item label="Phone Country Code">
-            {tenantPhoneCountryCode}
+          <Descriptions.Item label={translate("contracts.tenantCard.name")}>
+            {tenantName}
           </Descriptions.Item>
-          <Descriptions.Item label="Phone Number">
+
+          <Descriptions.Item label={translate("contracts.tenantCard.ic_no")}>
+            {tenantIcNo}
+          </Descriptions.Item>
+          {/* <Descriptions.Item label="Phone Country Code">
+            {tenantPhoneCountryCode}
+          </Descriptions.Item> */}
+          <Descriptions.Item
+            label={translate("contracts.tenantCard.phone_number")}
+          >
             {tenantPhoneNumber}
           </Descriptions.Item>
-          <Descriptions.Item label="Email">{tenantEmail}</Descriptions.Item>
+          <Descriptions.Item label={translate("contracts.tenantCard.email")}>
+            {tenantEmail}
+          </Descriptions.Item>
         </Descriptions>
       )}
     </Card>
